@@ -1,0 +1,201 @@
+/* ============ General Styling ============ */
+.final-report-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.415), rgba(0, 0, 0, 0.6)), url('/images/finalreport_img.webp') no-repeat center center fixed;
+  background-size: cover;
+  padding: 40px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+
+.report-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============ Header Section ============ */
+.report-header {
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-family: 'Roboto Slab', serif;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* ============ Project Details Section ============ */
+.project-details {
+  margin-bottom: 40px;
+}
+
+.project-details h3 {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.detail-box {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1.1rem;
+  color: white;
+  text-align: left;
+}
+
+.detail-box strong {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ============ Evaluation Section ============ */
+.evaluation-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* Left: Material Evaluation & Comparison */
+.material-evaluation {
+  flex: 1;
+  text-align: center;
+}
+
+.material-evaluation h3 {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* Right: AI Final Evaluation */
+.ai-evaluation {
+  flex: 1;
+  text-align: left;
+}
+
+.ai-evaluation h3 {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.ai-evaluation .summary {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.ai-evaluation strong {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ============ Footer: Print & Download Buttons ============ */
+.export-options {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 12px 24px;
+  border: 2px solid white;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* ============ Bar Chart Styling ============ */
+.recharts-cartesian-grid line {
+  stroke: rgba(255, 255, 255, 0.2);
+}
+
+.recharts-x-axis, .recharts-y-axis {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.recharts-tooltip {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  color: white !important;
+}
+
+.recharts-legend-item {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ============ Responsive Design ============ */
+@media (max-width: 768px) {
+  .evaluation-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .material-evaluation, .ai-evaluation {
+    width: 100%;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}

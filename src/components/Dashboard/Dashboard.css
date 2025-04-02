@@ -1,0 +1,125 @@
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Left Side - Infinite Scroll */
+.dashboard-features {
+  width: 35%;
+  background: hsla(120, 83%, 5%, 0.958);
+}
+
+.scroll-wrapper {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.feature-loop {
+  display: flex;
+  flex-direction: column;
+  animation: scrollLoop 40s linear infinite;
+}
+
+@keyframes scrollLoop {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.feature-card {
+  height: 14rem;
+  margin: 0 auto 1rem;
+  width: 90%;
+  padding: 2rem;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.feature-content {
+  color: white;
+}
+
+.card-description {
+  color: rgba(255,255,255,0.9) !important;
+  margin-bottom: 1.5rem;
+}
+
+.feature-card:hover {
+  transform: scale(1.02);
+}
+
+/* Right Side - Hero */
+.dashboard-hero {
+  width: 65%;
+  background: url('/images/Contractordash.webp') no-repeat center center/cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dashboard.css */
+.logo-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 120rem;
+  transform: translate(-50%, -50%);
+  opacity: 0.8; /* Make more visible */
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 20px rgba(0,0,0,0.3));
+}
+
+/* Ensure hero content stays above logo */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  margin-top: 10rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  max-width: 80%;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+  
+  .dashboard-features,
+  .dashboard-hero {
+    width: 100%;
+  }
+  
+  .dashboard-hero {
+    min-height: 50vh;
+  }
+  
+  .logo-svg {
+    height: 150rem;
+  }
+}
+.feature-loop {
+  will-change: transform; /* Only addition for performance */
+}

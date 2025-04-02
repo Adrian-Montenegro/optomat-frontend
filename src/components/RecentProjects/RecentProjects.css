@@ -1,0 +1,135 @@
+.recent-projects-container {
+    padding: 50px;
+    color: rgb(162, 3, 3);
+    background: 
+    linear-gradient(rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.9)), 
+    url('/images/RecentProjects.webp') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    backdrop-filter: blur(5px); /* Add a blur effect to the background */
+  }
+  
+  
+  .kanban-board {
+    display: flex;
+    margin-top: 30px;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent gray background */
+    border-radius: 12px;
+  }
+  
+  .kanban-column {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  
+  .kanban-column h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  /* Unique Colors for Each Status Section */
+  .kanban-column.in-progress {
+    border-left: 5px solid #3498db; /* Blue for In Progress */
+  }
+  
+  .kanban-column.completed {
+    border-left: 5px solid #2ecc71; /* Green for Completed */
+  }
+  
+  .kanban-column.archived {
+    border-left: 5px solid #e74c3c; /* Red for Archived */
+  }
+  
+  .project-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .project-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .project-card p {
+    margin: 5px 0;
+    color: #ddd;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .action-buttons button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .action-buttons button:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Milestones Section */
+  .milestones-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent gray background */
+    border-radius: 12px;
+  }
+  
+  .milestones-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .milestones-tracker {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .milestone {
+    text-align: center;
+    flex: 1;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  
+  .milestone.completed {
+    background: rgba(52, 152, 219, 0.2); /* Blue for completed */
+  }
+  
+  .milestone.in-progress {
+    background: rgba(46, 204, 113, 0.2); /* Green for in progress */
+  }
+  
+  .milestone:hover {
+    transform: translateY(-5px);
+    background: rgba(66, 59, 59, 0.2);
+  }
+  
+  .milestone span {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .milestone p {
+    margin: 0;
+    color: #ddd;
+  }

@@ -1,0 +1,98 @@
+/* Sidebar Container */
+.sidebar {
+  position: fixed;
+  top: 60px; /* Adjust to match your header height */
+  left: 0;
+  width: 60px; /* Slim sidebar */
+  background-color: #2c3e50;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px); /* Fill remaining height below header */
+  padding: 10px;
+  transition: width 0.3s ease;
+  z-index: 999; /* Ensure it's layered correctly */
+}
+
+/* Tab Buttons Container */
+.sidebar-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Each Sidebar Tab Button */
+.sidebar-tabs button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Active or Hover State */
+.sidebar-tabs button.active,
+.sidebar-tabs button:hover {
+  background-color: #34495e;
+  border-radius: 8px;
+}
+
+/* Sidebar Inner Content (on hover reveal) */
+.sidebar-content {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .sidebar-content {
+  opacity: 1; /* Show content on hover */
+}
+
+/* Tab Content Styling */
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Button Style */
+.sidebar-button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-button:hover {
+  background-color: #2980b9;
+}
+
+/* Buttons Inside Tab Content */
+.tab-content button {
+  background: none;
+  border: none;
+  color: #92c2ed;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.tab-content button:hover {
+  background-color: #34495e;
+  border-radius: 8px;
+}

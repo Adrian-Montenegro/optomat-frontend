@@ -1,0 +1,269 @@
+/* ============ General Styling ============ */
+.material-selection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.209), rgba(0, 0, 0, 0.6)), url('/images/material_img.webp') no-repeat center center fixed;
+  background-size: cover;
+  padding: 0px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ============ Main Layout ============ */
+.main-layout {
+  display: flex;
+  gap: 24px; /* Space between grid and right panel */
+  width: 100%;
+  max-width: 1200px;
+  align-items: flex-start; /* Align items to the top */
+}
+
+/* ============ Left Section (2x2 Grid) ============ */
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2x2 grid */
+  gap: 24px;
+  width: 100%;
+  max-width: 800px; /* Adjusted for 2x2 layout */
+}
+
+/* ============ Material Card Styling ============ */
+.material-card {
+  position: relative; /* For absolute positioning of the logo */
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 350px;
+  border: 2px solid transparent;
+  backdrop-filter: blur(10px);
+}
+
+.material-card:hover {
+  transform: translateY(-5px); /* Subtle rise effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.material-card.selected {
+  border: 1.5px solid white;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+}
+
+.material-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.material-card h3 {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.material-card p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+
+
+/* ============ Color-Coded Bars ============ */
+.color-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.color-bar {
+  height: 10px;
+  border-radius: 4px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.color-bar-label {
+  font-size: 0.9rem;
+  color: white;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+/* ============ Updated Professional Colors for Bars ============ */
+.sustainability-bar {
+  background: linear-gradient(90deg, rgba(46, 204, 113, 0.8), rgba(39, 174, 96, 0.8));
+}
+
+.cost-bar {
+  background: linear-gradient(90deg, rgba(52, 152, 219, 0.8), rgba(41, 128, 185, 0.8));
+}
+
+.durability-bar {
+  background: linear-gradient(90deg, rgba(231, 76, 60, 0.8), rgba(192, 57, 43, 0.8));
+}
+
+/* ============ Right Section (Feature Panel) ============ */
+.right-section {
+  background: rgba(243, 242, 242, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Custom Checkboxes */
+.feature-panel label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.feature-panel input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.feature-panel input[type="checkbox"]:checked {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.feature-panel input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 12px;
+}
+
+/* Other Viable Alternatives */
+.viable-alternatives h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: white; /* Ensure white font color */
+}
+
+.viable-alternatives ul {
+  list-style: none;
+  padding: 0;
+}
+
+.viable-alternatives li {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.viable-alternatives li:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Button Styling */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 20px; /* Even spacing between buttons */
+  position: absolute;
+  bottom: 30px; /* Lowered the buttons */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the buttons */
+}
+
+.button {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  border-radius: 100px; /* Fully rounded buttons */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button.black {
+  background: black;
+  border: 2px solid black;
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Apply Filter Button */
+.apply-filter-button {
+  margin-top: 25px;
+}
+
+/* Optimal Balance Button */
+.optimal-balance-button {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  border-radius: 100px; /* Fully rounded buttons */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center text */
+}
+
+.optimal-balance-button:hover {
+  background: rgba(247, 244, 244, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .material-grid {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .right-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .button-container {
+    position: static;
+    transform: none;
+    margin-top: 20px;
+  }
+}

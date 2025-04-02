@@ -1,0 +1,445 @@
+/* ===== ENHANCED BASE STYLES ===== */
+:root {
+    --gold: #ffd700;
+    --gold-light: #fff9d0;
+    --green: #007f5f;
+    --green-dark: #005f46;
+    --green-light: #e6f2ef;
+    --white: #ffffff;
+    --off-white: #fcfcfc;
+    --gray-light: #f5f7fa;
+    --gray-medium: #e1e5eb;
+    --gray-dark: #495057;
+    --text-dark: #1a1a1a;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.1);
+    --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.3);
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: url('/images/Portfolio.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0, 0.2); /* Subtle black tint with 20% opacity */
+}
+  
+  /* ===== MAIN CONTAINER ===== */
+  .portfolio-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 2.5rem;
+  }
+  
+  /* ===== ENHANCED HEADER SECTION ===== */
+  .portfolio-header {
+    text-align: center;
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 800px;
+    padding: 3rem 2.5rem;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--gray-medium);
+  }
+  
+  .portfolio-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--gold), var(--green));
+  }
+  
+  .logo-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.25rem;
+  }
+  
+  .portfolio-logo {
+    width: 110px;
+    height: 110px;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(var(--shadow-gold));
+    transition: var(--transition);
+  }
+  
+  .portfolio-logo:hover {
+    transform: scale(1.05) rotate(-5deg);
+  }
+  
+  .logo-glow {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+  }
+  
+  .portfolio-name {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin: 0.75rem 0 0.5rem;
+    margin-top: -2.5rem;
+    background: linear-gradient(90deg, var(--text-dark), var(--green-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+  }
+  
+  .portfolio-subtitle {
+    font-size: 1.25rem;
+    color: var(--gray-dark);
+    margin-bottom: 1.75rem;
+    font-weight: 500;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .highlight {
+    color: var(--white);
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0.9);
+    border-radius: 2px;
+  }
+  
+  /* ===== BUTTON ENHANCEMENTS ===== */
+  .portfolio-buttons {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .portfolio-btn {
+    padding: 0.85rem 1.75rem;
+    border: none;
+    font-weight: 600;
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    min-width: 140px;
+    justify-content: center;
+  }
+  
+  .resume-btn {
+    background: var(--gold);
+    color: #5a4a00;
+  }
+  
+  .github-btn {
+    background: var(--text-dark);
+    color: white;
+  }
+  
+  .linkedin-btn {
+    background: #0077b5;
+    color: white;
+  }
+  
+  .portfolio-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .resume-btn:hover {
+    background: #ffe600;
+  }
+  
+  .github-btn:hover {
+    background: #2a2a2a;
+  }
+  
+  .linkedin-btn:hover {
+    background: #006097;
+  }
+  
+  /* ===== PROJECT SHOWCASE ENHANCEMENTS ===== */
+  .project-showcase {
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+    margin-top: 1rem;
+  }
+  
+  .project-badge {
+    position: absolute;
+    top: -36.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: #5a0000;
+    padding: 0.35rem 1.25rem;
+    border-radius: 24px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-sm);
+    z-index: 2;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .project-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--off-white);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  
+  .project-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--gray-medium);
+  }
+  
+  .project-content {
+    padding: 2.5rem;
+  }
+  
+  .project-content h3 {
+    font-size: 1.5rem;
+    color: var(--green);
+    margin-bottom: 1.25rem;
+    font-weight: 700;
+  }
+  
+  .project-content p {
+    margin-bottom: 1.75rem;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+  }
+  
+  .feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  
+  .feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+  
+  .feature-icon {
+    font-size: 1.3rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    background: var(--green-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--green);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .feature-text {
+    font-size: 1rem;
+    padding-top: 0.5rem;
+    color: var(--text-dark);
+  }
+  
+  /* ===== TECH STACK ENHANCEMENTS ===== */
+  .tech-stack-display {
+    background: var(--green-light);
+    padding: 2.5rem;
+    border-top: 1px solid var(--gray-medium);
+  }
+  
+  .tech-stack-display h3 {
+    font-size: 1.5rem;
+    color: var(--green);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+  }
+  
+  .tech-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+  }
+  
+  .tech-item {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid var(--gray-medium);
+  }
+  
+  .tech-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--gold);
+  }
+  
+  .tech-icon {
+    font-size: 1.7rem;
+  }
+  
+  .tech-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--green-dark);
+  }
+  
+  /* ===== CONTACT SECTION ENHANCEMENTS ===== */
+  .portfolio-contact {
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+    padding: 2.5rem;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 1rem;
+    border: 1px solid var(--gray-medium);
+  }
+  
+  .portfolio-contact h2 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  
+  .contact-subtext {
+    color: var(--gray-dark);
+    margin-bottom: 2rem;
+    font-size: 1.15rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .email-link {
+    color: var(--white);
+    font-size: 1.15rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    transition: var(--transition);
+    background: linear-gradient(to right, var(--green), var(--green-dark));
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .email-link:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    background: linear-gradient(to right, var(--green-dark), var(--green));
+  }
+  
+  .mail-icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  /* ===== RESPONSIVE ADJUSTMENTS ===== */
+  @media (max-width: 768px) {
+    .portfolio-container {
+      padding: 1.5rem;
+      gap: 2rem;
+    }
+  
+    .portfolio-header {
+      padding: 2rem 1.5rem;
+    }
+  
+    .portfolio-name {
+      font-size: 2.25rem;
+    }
+  
+    .portfolio-subtitle {
+      font-size: 1.1rem;
+    }
+  
+    .portfolio-btn {
+      min-width: 120px;
+      padding: 0.75rem 1.5rem;
+    }
+  
+    .project-title {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .project-content,
+    .tech-stack-display,
+    .portfolio-contact {
+      padding: 1.75rem;
+    }
+  
+    .tech-stack-grid {
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+  
+    .portfolio-contact h2 {
+      font-size: 1.75rem;
+    }
+  }
