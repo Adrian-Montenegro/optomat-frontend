@@ -28,7 +28,7 @@ export default function OptoMatPortfolio() {
         </p>
         <div className={styles["portfolio-buttons"]}>
           <a
-            href="/AdrianResume.pdf"
+            href="/AdrianAiResume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={`${styles["portfolio-btn"]} ${styles["resume-btn"]}`}
@@ -44,7 +44,7 @@ export default function OptoMatPortfolio() {
             <Github size={16} /> GitHub
           </a>
           <a
-            href="https://linkedin.com/in/YOUR_PROFILE"
+            href="https://linkedin.com/in/adrian-montenegro-obby"
             target="_blank"
             rel="noopener noreferrer"
             className={`${styles["portfolio-btn"]} ${styles["linkedin-btn"]}`}

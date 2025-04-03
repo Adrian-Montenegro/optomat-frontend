@@ -1,4 +1,6 @@
 /* ===== ENHANCED BASE STYLES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 :root {
     --gold: #ffd700;
     --gold-light: #fff9d0;
@@ -44,7 +46,33 @@
     justify-content: center;
     padding: 2rem;
     gap: 2.5rem;
+  
+    background: linear-gradient(
+        rgba(97, 95, 95, 0.175),
+        rgba(114, 112, 112, 0.217)
+      ),
+      url("/images/Portfolio.webp");
+  
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }  
+  .portfolio-container {
+    font-family: 'Inter', sans-serif;
+    /* your existing styles */
+    background: linear-gradient(
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.003)
+      ),
+      url("/images/Portfolio.webp");
+  
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
   }
+  
   
   /* ===== ENHANCED HEADER SECTION ===== */
   .portfolio-header {

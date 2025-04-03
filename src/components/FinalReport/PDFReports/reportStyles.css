@@ -1,0 +1,68 @@
+/* PDFReports/reportStyles.css */
+@font-face {
+    font-family: 'Times-Roman';
+    font-weight: normal;
+    src: local('Times New Roman');
+  }
+  
+  @font-face {
+    font-family: 'Times-Roman';
+    font-weight: bold;
+    src: local('Times New Roman Bold');
+  }
+  
+  .page-container {
+    font-family: 'Times-Roman';
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000000;
+  }
+  
+  .section-title {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 12pt;
+    border-bottom: 1pt solid #333333;
+    padding-bottom: 4pt;
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15pt 0;
+  }
+  
+  .data-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    text-align: left;
+    padding: 8pt;
+    border: 1pt solid #dddddd;
+  }
+  
+  .data-table td {
+    padding: 8pt;
+    border: 1pt solid #dddddd;
+  }
+  
+  .number-cell {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+  }
+  
+  .section-divider {
+    height: 1pt;
+    background-color: #333333;
+    margin: 20pt 0;
+  }
+  
+  .page-footer {
+    position: absolute;
+    bottom: 20pt;
+    left: 40pt;
+    right: 40pt;
+    font-size: 10pt;
+    color: #888888;
+    border-top: 1pt solid #eeeeee;
+    padding-top: 8pt;
+  }

@@ -7,9 +7,11 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const scrollWrapperRef = useRef<HTMLDivElement>(null);
   const featureLoopRef = useRef<HTMLDivElement>(null);
-  const [scrollSpeed, setScrollSpeed] = useState(0.8); // Slightly faster than original
+  const wheelRef = useRef<HTMLDivElement>(null);
+  const [scrollSpeed, setScrollSpeed] = useState(0.6);
   const scrollPositionRef = useRef(0);
   const animationRef = useRef<number | null>(null);
+  const isMouseOverRef = useRef(false);
 
   const featureCards = [
     {
@@ -42,13 +44,40 @@ const Dashboard = () => {
     }
   ];
 
+  const calculateSpeedFromMousePosition = (clientY: number) => {
+    if (!wheelRef.current) return 0.6;
+    
+    const rect = wheelRef.current.getBoundingClientRect();
+    const centerY = rect.top + rect.height / 2;
+    const distanceFromCenter = clientY - centerY;
+    const normalizedDistance = distanceFromCenter / (rect.height / 2);
+    
+    const speed = Math.sign(normalizedDistance) * 
+      Math.pow(Math.abs(normalizedDistance), 1) * 5;
+    
+    return speed;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const speed = calculateSpeedFromMousePosition(e.clientY);
+    setScrollSpeed(speed);
+    isMouseOverRef.current = true;
+  };
+
+  const handleMouseEnter = () => {
+    isMouseOverRef.current = true;
+  };
+
+  const handleMouseLeave = () => {
+    isMouseOverRef.current = false;
+    setScrollSpeed(0.6);
+  };
+
   const animate = () => {
     scrollPositionRef.current -= scrollSpeed;
     
-    // Calculate total height of all cards
     const totalHeight = featureCards.length * 15 * 16;
     
-    // Seamless looping
     if (scrollPositionRef.current < -totalHeight) {
       scrollPositionRef.current += totalHeight;
     } else if (scrollPositionRef.current > 0) {
@@ -65,12 +94,10 @@ const Dashboard = () => {
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     if (!scrollWrapperRef.current) return;
     
-    // Temporary speed boost on wheel (3x normal speed)
     const boost = e.deltaY > 0 ? 2.4 : -2.4;
     setScrollSpeed(boost);
     
-    // Return to normal speed after interaction
-    setTimeout(() => setScrollSpeed(0.8), 500);
+    setTimeout(() => setScrollSpeed(0.6), 500);
   };
 
   useEffect(() => {
@@ -84,35 +111,44 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      {/* Left Side - Infinite Feature Card Loop */}
       <div className="dashboard-features">
         <div 
           className="scroll-wrapper"
           ref={scrollWrapperRef}
           onWheel={handleWheel}
         >
-          <div className="feature-loop" ref={featureLoopRef}>
-            {[...featureCards, ...featureCards].map((card, index) => (
-              <div
-                key={`card-${index}`}
-                className="feature-card"
-                onClick={() => navigate(card.path)}
-                style={{ 
-                  backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${card.bgImage})`
-                }}
-              >
-                <div className="feature-content">
-                  <h2>{card.title}</h2>
-                  <p className="card-description">{card.description}</p>
-                  <button className="feature-btn">{card.buttonText}</button>
+          <div 
+            className="wheel"
+            ref={wheelRef}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="feature-loop" ref={featureLoopRef}>
+              {[...featureCards, ...featureCards].map((card, index) => (
+                <div
+                  key={`card-${index}`}
+                  className="feature-card"
+                  onClick={() => navigate(card.path)}
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${card.bgImage})`,
+                    backgroundPosition: card.title === "Recent Projects" ? 'center 26%' : 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                >
+                  <div className="feature-content">
+                    <h2>{card.title}</h2>
+                    <p className="card-description">{card.description}</p>
+                    <button className="glass-button">{card.buttonText}</button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Right Side - Hero with Massive Permanent Logo */}
       <div className="dashboard-hero">
         <img src={logo} alt="OptoMat Logo" className="logo-svg" />
         <div className="hero-content">

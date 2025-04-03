@@ -34,6 +34,7 @@
 .project-title {
   color: white;
   font-size: 2.5rem;
+  margin-top: -6rem;
   margin-bottom: 2rem;
   font-weight: 700;
   text-align: center;
@@ -176,8 +177,8 @@ input:checked + .toggle-slider:before {
   backdrop-filter: blur(5px);
   width: fit-content;
   min-width: 200px;
-  margin-left: -880px;
-  margin-bottom: 115px;
+  margin-left: -850px;
+  margin-bottom: 195px;
 }
 
 .create-project-btn:hover {

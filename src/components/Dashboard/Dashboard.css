@@ -1,3 +1,4 @@
+/* Dashboard.css */
 .dashboard {
   display: flex;
   min-height: 100vh;
@@ -16,15 +17,15 @@
   position: relative;
 }
 
+.wheel {
+  height: 100%;
+  position: relative;
+}
+
 .feature-loop {
   display: flex;
   flex-direction: column;
-  animation: scrollLoop 40s linear infinite;
-}
-
-@keyframes scrollLoop {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
+  will-change: transform;
 }
 
 .feature-card {
@@ -56,6 +57,32 @@
   transform: scale(1.02);
 }
 
+/* Glass Button Styles */
+.glass-button {
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.glass-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
 /* Right Side - Hero */
 .dashboard-hero {
   width: 65%;
@@ -66,20 +93,18 @@
   justify-content: center;
 }
 
-/* Dashboard.css */
 .logo-svg {
   position: absolute;
   top: 50%;
   left: 50%;
   height: 120rem;
   transform: translate(-50%, -50%);
-  opacity: 0.8; /* Make more visible */
+  opacity: 0.8;
   z-index: 1;
   pointer-events: none;
   filter: drop-shadow(0 0 20px rgba(0,0,0,0.3));
 }
 
-/* Ensure hero content stays above logo */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -119,7 +144,4 @@
   .logo-svg {
     height: 150rem;
   }
-}
-.feature-loop {
-  will-change: transform; /* Only addition for performance */
 }

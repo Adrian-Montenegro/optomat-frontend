@@ -1,13 +1,14 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid,
-} from 'recharts';
+import React, { useState } from 'react';
+import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import ReportTemplate from './PDFReports/ReportTemplate';
+import { Material } from './PDFReports/Types';
 import './FinalReport.css';
 
 interface FinalReportProps {
   selectedMaterials: {
+    id: string;
     name: string;
+    type: string;
     sustainability: number;
     cost: number;
     durability: number;
@@ -35,94 +36,224 @@ const FinalReport: React.FC<FinalReportProps> = ({
   isHighPriority,
   weights,
 }) => {
-  const navigate = useNavigate();
+  const [showPreview, setShowPreview] = useState(false);
+  
+  // Process data for both PDF and preview
+  const processedMaterials = selectedMaterials.map((material, index) => ({
+    ...material,
+    score: (material.sustainability * weights.sustainability) + 
+          (material.cost * weights.cost) + 
+          (material.durability * weights.durability),
+    rank: index + 1,
+    costPerUnit: material.cost * 100,
+    carbonFootprint: (1 - material.sustainability) * 10
+  })).sort((a, b) => b.score - a.score);
 
-  const barData = selectedMaterials.map((material) => ({
-    name: material.name,
-    sustainability: material.sustainability,
-    cost: material.cost,
-    durability: material.durability,
-  }));
+  const topMaterial = processedMaterials[0];
 
   return (
     <div className="final-report-container">
       <div className="report-box">
-        {/* Header */}
-        <header className="report-header">
-          <h1>ENGINEERING REPORT</h1>
-          <h2>Sustainability Material Selection</h2>
+        {/* Glass Card Header */}
+        <header className="card-glass header-section">
+          <h1>OptoMat Material Evaluation</h1>
+          <h2>Comprehensive Analysis Report</h2>
         </header>
 
-        {/* Project Details */}
-        <section className="project-details">
+        {/* Project Details - Glass Cards */}
+        <section className="card-glass project-section">
           <h3>Project Details</h3>
           <div className="details-grid">
-            <div className="detail-box"><strong>Project Name:</strong> {projectName}</div>
-            <div className="detail-box"><strong>Project Type:</strong> {projectType}</div>
-            <div className="detail-box"><strong>Location:</strong> {location}</div>
-            <div className="detail-box"><strong>Start Date:</strong> {startDate}</div>
-            <div className="detail-box"><strong>Duration:</strong> {duration} days</div>
-            <div className="detail-box"><strong>High-Priority:</strong> {isHighPriority ? 'Yes' : 'No'}</div>
+            <div className="detail-card">
+              <h4>Project Name</h4>
+              <p>{projectName}</p>
+            </div>
+            <div className="detail-card">
+              <h4>Project Type</h4>
+              <p>{projectType}</p>
+            </div>
+            <div className="detail-card">
+              <h4>Location</h4>
+              <p>{location}</p>
+            </div>
+            <div className="detail-card">
+              <h4>Start Date</h4>
+              <p>{startDate}</p>
+            </div>
+            <div className="detail-card">
+              <h4>Duration</h4>
+              <p>{duration} days</p>
+            </div>
+            <div className="detail-card">
+              <h4>Priority</h4>
+              <p>{isHighPriority ? 'High' : 'Standard'}</p>
+            </div>
           </div>
         </section>
 
-        {/* Evaluation Section */}
-        <section className="evaluation-section">
-          <div className="material-evaluation">
-            <h3 className="graph-title">Material Evaluation & Comparison</h3>
-            {barData.length > 0 ? (
-              <BarChart width={500} height={300} data={barData}>
-                <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.3} />
-                <XAxis dataKey="name" tick={{ fontSize: 12, fontWeight: 600 }} />
-                <YAxis tick={{ fontSize: 12, fontWeight: 600 }} />
-                <Tooltip contentStyle={{ borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }} />
-                <Legend wrapperStyle={{ fontWeight: 600 }} />
-                <Bar dataKey="sustainability" fill="url(#sustainabilityGradient)" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="cost" fill="url(#costGradient)" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="durability" fill="url(#durabilityGradient)" radius={[4, 4, 0, 0]} />
-                <defs>
-                  <linearGradient id="sustainabilityGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#2ecc71" stopOpacity={0.8} />
-                    <stop offset="100%" stopColor="#27ae60" stopOpacity={0.8} />
-                  </linearGradient>
-                  <linearGradient id="costGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#3498db" stopOpacity={0.8} />
-                    <stop offset="100%" stopColor="#2980b9" stopOpacity={0.8} />
-                  </linearGradient>
-                  <linearGradient id="durabilityGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#e74c3c" stopOpacity={0.8} />
-                    <stop offset="100%" stopColor="#c0392b" stopOpacity={0.8} />
-                  </linearGradient>
-                </defs>
-              </BarChart>
-            ) : (
-              <p>No material data available for comparison.</p>
+        {/* Top Material - Glass Card */}
+        <section className="card-glass material-section">
+          <h3>Top Recommended Material</h3>
+          <div className="top-material-card">
+            <div className="material-rank">#{topMaterial.rank}</div>
+            <h4>{topMaterial.name}</h4>
+            <p className="material-type">{topMaterial.type}</p>
+            <div className="material-stats">
+              <div className="stat-item">
+                <span className="stat-label">Score</span>
+                <span className="stat-value">{topMaterial.score.toFixed(1)}</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-label">Cost</span>
+                <span className="stat-value">${topMaterial.costPerUnit.toFixed(2)}/unit</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-label">Carbon</span>
+                <span className="stat-value">{topMaterial.carbonFootprint.toFixed(1)} kgCO₂</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Material Comparison - Glass Cards */}
+        <section className="card-glass comparison-section">
+          <h3>Material Comparison</h3>
+          <div className="materials-grid">
+            {processedMaterials.map(material => (
+              <div key={material.id} className="comparison-card">
+                <h4>#{material.rank} {material.name}</h4>
+                <div className="comparison-stats">
+                  <div>
+                    <span className="stat-label">Score:</span>
+                    <span>{material.score.toFixed(1)}</span>
+                  </div>
+                  <div>
+                    <span className="stat-label">Cost:</span>
+                    <span>${material.costPerUnit.toFixed(2)}</span>
+                  </div>
+                  <div>
+                    <span className="stat-label">Carbon:</span>
+                    <span>{material.carbonFootprint.toFixed(1)} kgCO₂</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* PDF Export and Preview Buttons */}
+        <div className="button-container">
+          <button 
+            className="preview-button"
+            onClick={() => setShowPreview(true)}
+          >
+            Preview
+          </button>
+          
+          <PDFDownloadLink
+            document={
+              <ReportTemplate
+                clientName={projectName}
+                projectName={`${projectType} Project`}
+                reportDate={new Date().toLocaleDateString()}
+                materialData={processedMaterials}
+                financialData={processedMaterials.map(material => ({
+                  id: material.id,
+                  name: material.name,
+                  rawCost: material.costPerUnit,
+                  effectiveCost: material.costPerUnit * 0.85,
+                  taxImpact: material.costPerUnit * 0.05,
+                  lifetimeValue: material.costPerUnit * 10,
+                  carbonPerDollar: material.carbonFootprint / material.costPerUnit
+                }))}
+                sustainabilityData={processedMaterials.map(material => ({
+                  id: material.id,
+                  name: material.name,
+                  leedPoints: Math.round(material.sustainability * 40),
+                  carbonFootprint: material.carbonFootprint,
+                  recycledContent: Math.round(material.sustainability * 100),
+                  energyEfficiency: Math.round((0.6 + material.sustainability * 0.4) * 100),
+                  waterEfficiency: Math.round(material.sustainability * 80)
+                }))}
+                regionalData={{
+                  locations: [location, 'CA', 'NV', 'IL'],
+                  comparisons: processedMaterials.map(material => ({
+                    location,
+                    materialScores: [{
+                      materialId: material.id,
+                      score: material.score,
+                      compliance: 'Full'
+                    }]
+                  }))
+                }}
+              />
+            }
+            fileName={`OptoMat_Report_${projectName.replace(/\s+/g, '_')}.pdf`}
+          >
+            {({ loading }) => (
+              <button className="download-button" disabled={loading}>
+                {loading ? 'Generating...' : 'Download'}
+              </button>
             )}
-          </div>
+          </PDFDownloadLink>
+        </div>
 
-          {/* AI Final Evaluation */}
-          <div className="ai-evaluation">
-            <h3>AI Final Evaluation</h3>
-            <p className="summary">
-              Based on your material selection and evaluation criteria, the AI recommends the best material balancing sustainability, cost, and durability.
-            </p>
-            <p><strong>Recommended Material:</strong> Material C</p>
-            <p>
-              Material C offers the best balance of sustainability, cost, and durability
-              for this project.
-            </p>
+        {/* PDF Preview Modal */}
+        <div className={`pdf-preview-modal ${showPreview ? 'active' : ''}`}>
+          <div className="pdf-preview-content">
+            <div className="pdf-preview-header">
+              <div className="pdf-preview-title">Report Preview: {projectName}</div>
+              <button 
+                className="close-preview"
+                onClick={() => setShowPreview(false)}
+                aria-label="Close preview"
+              >
+                &times;
+              </button>
+            </div>
+            <div className="pdf-viewer-container">
+              {showPreview && (
+                <PDFViewer width="100%" height="100%">
+                  <ReportTemplate
+                    clientName={projectName}
+                    projectName={`${projectType} Project`}
+                    reportDate={new Date().toLocaleDateString()}
+                    materialData={processedMaterials}
+                    financialData={processedMaterials.map(material => ({
+                      id: material.id,
+                      name: material.name,
+                      rawCost: material.costPerUnit,
+                      effectiveCost: material.costPerUnit * 0.85,
+                      taxImpact: material.costPerUnit * 0.05,
+                      lifetimeValue: material.costPerUnit * 10,
+                      carbonPerDollar: material.carbonFootprint / material.costPerUnit
+                    }))}
+                    sustainabilityData={processedMaterials.map(material => ({
+                      id: material.id,
+                      name: material.name,
+                      leedPoints: Math.round(material.sustainability * 40),
+                      carbonFootprint: material.carbonFootprint,
+                      recycledContent: Math.round(material.sustainability * 100),
+                      energyEfficiency: Math.round((0.6 + material.sustainability * 0.4) * 100),
+                      waterEfficiency: Math.round(material.sustainability * 80)
+                    }))}
+                    regionalData={{
+                      locations: [location, 'CA', 'NV', 'IL'],
+                      comparisons: processedMaterials.map(material => ({
+                        location,
+                        materialScores: [{
+                          materialId: material.id,
+                          score: material.score,
+                          compliance: 'Full'
+                        }]
+                      }))
+                    }}
+                  />
+                </PDFViewer>
+              )}
+            </div>
           </div>
-        </section>
-
-        {/* Footer Buttons */}
-        <footer className="export-options">
-          <button onClick={() => window.print()}>
-            <span role="img" aria-label="Print"></span> Print Report
-          </button>
-          <button onClick={() => alert('Downloading PDF...')}>
-            <span role="img" aria-label="Download"></span> Download PDF
-          </button>
-        </footer>
+        </div>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ import Documents from "./components/Documents/Documents";
 import ContractorMode from "./components/ContractorMode/ContractorMode";
 import Dashboard from "./components/Dashboard/Dashboard";
 import RecentProjects from "./components/RecentProjects/RecentProjects";
-import OptoMatPortfolio from "./OptoMatPortfolio"; // ✅ Added Portfolio page
+import OptoMatPortfolio from "./OptoMatPortfolio";
 import "./App.css";
 
 const ScrollToTop = () => {
@@ -33,10 +33,32 @@ const ScrollToTop = () => {
 };
 
 const App: React.FC = () => {
+  // Updated selectedMaterials with required id and type fields
   const selectedMaterials = [
-    { name: "Material A", sustainability: 90, cost: 80, durability: 70 },
-    { name: "Material B", sustainability: 70, cost: 60, durability: 80 },
-    { name: "Material C", sustainability: 85, cost: 75, durability: 90 },
+    { 
+      id: "mat-1",
+      name: "Material A", 
+      type: "Composite",
+      sustainability: 0.9, 
+      cost: 80, 
+      durability: 0.7 
+    },
+    { 
+      id: "mat-2",
+      name: "Material B", 
+      type: "Metal",
+      sustainability: 0.7, 
+      cost: 60, 
+      durability: 0.8 
+    },
+    { 
+      id: "mat-3",
+      name: "Material C", 
+      type: "Polymer",
+      sustainability: 0.85, 
+      cost: 75, 
+      durability: 0.9 
+    },
   ];
 
   const projectName = "Untitled Project";
@@ -45,24 +67,30 @@ const App: React.FC = () => {
   const startDate = "2023-10-01";
   const duration = 90;
   const isHighPriority = true;
-  const weights = { sustainability: 40, cost: 30, durability: 30 };
+  
+  // Updated weights to use decimal values (0-1 scale)
+  const weights = { 
+    sustainability: 0.4, 
+    cost: 0.3, 
+    durability: 0.3 
+  };
 
   return (
     <Router>
       <ScrollToTop />
 
-      {/* ✅ Header is hidden on Intro page */}
+      {/* Header is hidden on Intro page */}
       {window.location.pathname === "/" ? null : <Header />}
 
       <div className="page-container">
         <Routes>
-          {/* ✅ Show Intro first */}
+          {/* Show Intro first */}
           <Route path="/" element={<Intro />} />
 
-          {/* ✅ Main Dashboard */}
+          {/* Main Dashboard */}
           <Route path="/dashboard" element={<Dashboard />} />
 
-          {/* ✅ Feature Cards */}
+          {/* Feature Cards */}
           <Route path="/project-setup" element={<ProjectSetup />} />
           <Route path="/material-selection" element={<MaterialSelection />} />
           <Route
@@ -75,7 +103,7 @@ const App: React.FC = () => {
             }
           />
 
-          {/* ✅ Final Report */}
+          {/* Final Report - Updated with all required props */}
           <Route
             path="/final-report"
             element={
@@ -92,17 +120,17 @@ const App: React.FC = () => {
             }
           />
 
-          {/* ✅ Documents & Contractor Mode */}
+          {/* Documents & Contractor Mode */}
           <Route path="/documents" element={<Documents />} />
           <Route path="/contractor-mode" element={<ContractorMode />} />
 
-          {/* ✅ Recent Projects */}
+          {/* Recent Projects */}
           <Route path="/recent-projects" element={<RecentProjects />} />
 
-          {/* ✅ Portfolio Route */}
+          {/* Portfolio Route */}
           <Route path="/portfolio" element={<OptoMatPortfolio />} />
 
-          {/* ✅ Redirect unknown pages to Dashboard */}
+          {/* Redirect unknown pages to Dashboard */}
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </div>

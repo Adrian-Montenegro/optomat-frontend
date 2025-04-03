@@ -16,3 +16,9 @@ button {
 header {
   z-index: 1000;
 }
+
+.page-container {
+  background: #f5f5f5; /* Or your neutral color */
+  background-image: none;
+  min-height: 100vh;
+}

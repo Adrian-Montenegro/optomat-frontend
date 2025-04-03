@@ -18,6 +18,7 @@
   gap: 24px; /* Space between grid and right panel */
   width: 100%;
   max-width: 1200px;
+  margin-top: -4rem;
   align-items: flex-start; /* Align items to the top */
 }
 
@@ -189,7 +190,6 @@
 .button-container {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
   gap: 20px; /* Even spacing between buttons */
   position: absolute;
   bottom: 30px; /* Lowered the buttons */
